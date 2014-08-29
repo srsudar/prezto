@@ -79,10 +79,14 @@ else
   # BSD Core Utilities
   if zstyle -t ':prezto:module:utility:ls' color; then
     # Define colors for BSD ls.
-    export LSCOLORS='exfxcxdxbxGxDxabagacad'
+    #export LSCOLORS='exfxcxdxbxGxDxabagacad'
 
     # Define colors for the completion system.
-    export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
+    #export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
+
+    # sam's customized
+    export LS_COLORS="di=96;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
+    export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
     alias ls='ls -G'
   else
