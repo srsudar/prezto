@@ -110,7 +110,7 @@ function prompt_steeef_setup {
   # not one who diets. The idea is to display the time and have it colored by
   # return code (red if >0).
   # local time, color coded by last return code
-  time_enabled="%(?.${${fino_green}%}.%{${my_red}%})%*%{$reset_color%}"
+  time_enabled="%(?.${${_prompt_colors[8]}%}.%{${_prompt_colors[4]}%})%*%{$reset_color%}"
   time_disabled="${fino_green}%*%{$reset_color%}"
   time=$time_enabled
 
@@ -119,7 +119,7 @@ function prompt_steeef_setup {
 
   # Define prompts.
   PROMPT="
-${_prompt_colors[8]}${time} in ${_prompt_colors[8]}%~%f 
+${_prompt_colors[8]}${time}%f ${_prompt_colors[8]}in ${_prompt_colors[8]}%~%f 
 "'$python_info[virtualenv]'"${_prompt_colors[6]}%1d%f"'${vcs_info_msg_0_}'" $ "
   RPROMPT='${_prompt_colors[5]}%n@%m%f'
 }
