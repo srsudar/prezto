@@ -14,6 +14,13 @@
 #   http://i.imgur.com/HyRvv.png
 #
 
+# Call this to check for untracked hg changes in the prompt. This will slow
+# down even non-hg prompts, so only use it if you need it or are working with
+# a lot of hg repos.
+function hg_check_for_untracked_files {
+  DO_HG=true
+}
+
 function prompt_steeef_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.
   if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
@@ -31,10 +38,8 @@ function prompt_steeef_precmd {
   # in an hg repo.
   if [[ ${DO_HG:=false} = true && -n $(hg status -u 2>/dev/null) ]]; then
     hg_branch_format=" (${_prompt_colors[3]}%b%f%c%u${_prompt_colors[4]}?%f)"
-    echo "there are untracked hg files"
   else
     hg_branch_format=" (${_prompt_colors[3]}%b%f%c%u)"
-    echo "there are not untracked hg files"
   fi
 
   zstyle ':vcs_info:hg*:prompt:*' formats "${hg_branch_format}"
@@ -69,6 +74,7 @@ function prompt_steeef_setup {
       "%F{075}" # electric blue
       "%F{033}" # fino blue
       "%F{059}" # dull
+      "%F{226}" # yellow
     )
   else
     _prompt_colors=(
@@ -80,6 +86,7 @@ function prompt_steeef_setup {
       "%F{cyan}"    # cyan, b/c can't replicate fino blue
       "%F{cyan}"
       "%F{cyan}"
+      "$F{yellow}"
     )
   fi
 
@@ -97,8 +104,8 @@ function prompt_steeef_setup {
 
   local hg_branch_format="${_prompt_colors[3]}%b%f%c%u"
   local hg_action_format="${_prompt_colors[4]}|%a%f"
-  local hg_unstaged_format="${_prompt_colors[4]}*%f"
-  local hg_staged_format="${_prompt_colors[4]}*%f"
+  local hg_unstaged_format="${_prompt_colors[9]}*%f"
+  #local hg_staged_format="${_prompt_colors[4]}*%f"
 
   # Set vcs_info parameters.
   zstyle ':vcs_info:*' enable git hg
@@ -114,7 +121,7 @@ function prompt_steeef_setup {
   zstyle ':vcs_info:hg*:*' branchformat "%b"
   zstyle ':vcs_info:hg*' get-revision true
   zstyle ':vcs_info:hg*:prompt:*' unstagedstr "${hg_unstaged_format}"
-  zstyle ':vcs_info:hg*:prompt:*' stagedstr "${hg_staged_format}"
+  #zstyle ':vcs_info:hg*:prompt:*' stagedstr "${hg_staged_format}"
   zstyle ':vcs_info:hg*:prompt:*' actionformats " (${hg_branch_format}${hg_action_format})"
   zstyle ':vcs_info:hg*:prompt:*' formats " (${hg_branch_format})"
 
