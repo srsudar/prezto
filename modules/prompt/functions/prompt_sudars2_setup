@@ -74,7 +74,7 @@ function prompt_steeef_setup {
   #   %R - repository path
   #   %S - path in the repository
   local branch_format="${_prompt_steeef_colors[2]}%b%f%u%c"
-  local action_format="${_prompt_steeef_colors[2]}%a%f"
+  local action_format="${_prompt_steeef_colors[4]}|%a%f"
   local unstaged_format="${_prompt_steeef_colors[4]}*%f"
   local staged_format="${_prompt_steeef_colors[5]}*%f"
 
@@ -83,8 +83,8 @@ function prompt_steeef_setup {
   zstyle ':vcs_info:*:prompt:*' check-for-changes true
   zstyle ':vcs_info:*:prompt:*' unstagedstr "${unstaged_format}"
   zstyle ':vcs_info:*:prompt:*' stagedstr "${staged_format}"
-  zstyle ':vcs_info:*:prompt:*' actionformats "${branch_format}${action_format}"
-  zstyle ':vcs_info:*:prompt:*' formats "${branch_format}"
+  zstyle ':vcs_info:*:prompt:*' actionformats "[${branch_format}${action_format}]"
+  zstyle ':vcs_info:*:prompt:*' formats "[${branch_format}]"
   zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
 
   # Set python-info parameters.
