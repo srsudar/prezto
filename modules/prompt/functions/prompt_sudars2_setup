@@ -22,6 +22,17 @@ function prompt_steeef_precmd {
     git_branch_format=" [${_prompt_colors[2]}%b%f%u%c]"
   fi
 
+  # check for untracked hg files as well.
+  # This can be slow and is unnecessary if you're not using hg. So set this to
+  # false. Callers working with hg a lot will have to just know that they
+  # should execute `DO_HG=true` if they want to be checking for untracked files
+  # in an hg repo.
+  if [[ ${DO_HG:=false} = true && -n $(hg status -u 2>/dev/null) ]]; then
+    echo "there are untracked hg files"
+  else
+    echo "there are not untracked hg files"
+  fi
+
   zstyle ':vcs_info:git*:prompt:*' formats "${git_branch_format}"
 
   vcs_info 'prompt'
