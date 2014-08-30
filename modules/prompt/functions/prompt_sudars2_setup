@@ -1,4 +1,6 @@
 #
+# Aug 29, 2014--copied this from steeef for my own purposes.
+#
 # A theme based on Steve Losh's Extravagant Prompt with vcs_info integration.
 #
 # Authors:
@@ -15,9 +17,9 @@
 function prompt_steeef_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.
   if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-    git_branch_format="[${_prompt_steeef_colors[2]}%b%f%u%c${_prompt_steeef_colors[4]}*%f]"
+    git_branch_format=" [${_prompt_steeef_colors[2]}%b%f%u%c${_prompt_steeef_colors[4]}*%f]"
   else
-    git_branch_format="[${_prompt_steeef_colors[2]}%b%f%u%c]"
+    git_branch_format=" [${_prompt_steeef_colors[2]}%b%f%u%c]"
   fi
 
   zstyle ':vcs_info:git*:prompt:*' formats "${git_branch_format}"
@@ -88,10 +90,12 @@ function prompt_steeef_setup {
   zstyle ':vcs_info:git*:prompt:*' check-for-changes true
   zstyle ':vcs_info:git*:prompt:*' unstagedstr "${git_ungit_staged_format}"
   zstyle ':vcs_info:git*:prompt:*' stagedstr "${git_staged_format}"
-  zstyle ':vcs_info:git*:prompt:*' actionformats "[${git_branch_format}${git_action_format}]"
-  zstyle ':vcs_info:git*:prompt:*' formats "[${git_branch_format}]"
+  zstyle ':vcs_info:git*:prompt:*' actionformats " [${git_branch_format}${git_action_format}]"
+  zstyle ':vcs_info:git*:prompt:*' formats " [${git_branch_format}]"
 
   # and now we want the hg ones.
+  zstyle ':vcs_info:hg*:*' branchformat "%b"
+  zstyle ':vcs_info:hg*' get-revision true
   zstyle ':vcs_info:hg*:prompt:*' unstagedstr "${hg_unstaged_format}"
   zstyle ':vcs_info:hg*:prompt:*' stagedstr "${hg_staged_format}"
   zstyle ':vcs_info:hg*:prompt:*' actionformats " (${hg_branch_format}${hg_action_format})"
