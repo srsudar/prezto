@@ -53,6 +53,7 @@ function prompt_steeef_setup {
       "%F{118}" # Limegreen
       "%F{075}" # electric blue
       "%F{033}" # fino blue
+      "%F{059}" # dull
     )
   else
     _prompt_colors=(
@@ -62,6 +63,7 @@ function prompt_steeef_setup {
       "%F{red}"
       "%F{green}"
       "%F{cyan}"    # cyan, b/c can't replicate fino blue
+      "%F{cyan}"
       "%F{cyan}"
     )
   fi
@@ -101,8 +103,8 @@ function prompt_steeef_setup {
   # and now we want the hg ones.
   zstyle ':vcs_info:hg*:prompt:*' unstagedstr "${hg_unstaged_format}"
   zstyle ':vcs_info:hg*:prompt:*' stagedstr "${hg_staged_format}"
-  zstyle ':vcs_info:hg*:prompt:*' actionformats "(${hg_branch_format}${hg_action_format})"
-  zstyle ':vcs_info:hg*:prompt:*' formats "(${hg_branch_format})"
+  zstyle ':vcs_info:hg*:prompt:*' actionformats " (${hg_branch_format}${hg_action_format})"
+  zstyle ':vcs_info:hg*:prompt:*' formats " (${hg_branch_format})"
 
   # Got this stuff from the dieter theme. That's dieter as a name, apparently,
   # not one who diets. The idea is to display the time and have it colored by
@@ -117,8 +119,8 @@ function prompt_steeef_setup {
 
   # Define prompts.
   PROMPT="
-${_prompt_colors[3]}%n%f at ${_prompt_colors[2]}%m%f in ${_prompt_colors[5]}%~%f "'${vcs_info_msg_0_}'"
-"'$python_info[virtualenv]'"${_prompt_colors[5]}${time}%f ${_prompt_colors[6]}%1d%f $ "
+${_prompt_colors[5]}${time}%f in ${_prompt_colors[8]}%~%f 
+"'$python_info[virtualenv]'"${_prompt_colors[6]}%1d%f"'${vcs_info_msg_0_}'" $ "
   RPROMPT='${_prompt_colors[5]}%n@%m%f'
 }
 
