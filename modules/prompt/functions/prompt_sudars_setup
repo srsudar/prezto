@@ -76,8 +76,8 @@ function prompt_steeef_setup {
 
   local hg_branch_format="${_prompt_steeef_colors[3]}%b%f%c%u"
   local hg_action_format="${_prompt_steeef_colors[4]}|%a%f"
-  local hg_unstaged_format="${_prompt_steeef_colors[5]}*%f"
-  local hg_staged_format="${_prompt_steeef_colors[5]}*%f"
+  local hg_unstaged_format="${_prompt_steeef_colors[4]}*%f"
+  local hg_staged_format="${_prompt_steeef_colors[4]}*%f"
 
   # Set vcs_info parameters.
   # use-simple prevents the dirty flag from being available. Don't use it, but
