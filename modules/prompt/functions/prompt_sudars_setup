@@ -17,9 +17,9 @@
 function prompt_steeef_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.
   if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-    branch_format="(${_prompt_steeef_colors[1]}%b%f%u%c${_prompt_steeef_colors[4]}*%f)"
+    branch_format="(${_prompt_colors[1]}%b%f%u%c${_prompt_colors[4]}*%f)"
   else
-    branch_format="(${_prompt_steeef_colors[1]}%b%f%u%c)"
+    branch_format="(${_prompt_colors[1]}%b%f%u%c)"
   fi
 
   zstyle ':vcs_info:*:prompt:*' formats "${branch_format}"
@@ -45,20 +45,24 @@ function prompt_steeef_setup {
 
   # Use extended color pallete if available.
   if [[ $TERM = *256color* || $TERM = *rxvt* ]]; then
-    _prompt_steeef_colors=(
+    _prompt_colors=(
       "%F{81}"  # Turquoise
       "%F{166}" # Orange
       "%F{135}" # Purple
       "%F{161}" # Hotpink
       "%F{118}" # Limegreen
+      "%F{075}" # electric blue
+      "%F{033}" # fino blue
     )
   else
-    _prompt_steeef_colors=(
+    _prompt_colors=(
       "%F{cyan}"
       "%F{yellow}"
       "%F{magenta}"
       "%F{red}"
       "%F{green}"
+      "%F{cyan}"    # cyan, b/c can't replicate fino blue
+      "%F{cyan}"
     )
   fi
 
@@ -69,15 +73,15 @@ function prompt_steeef_setup {
   #   %a - action (e.g. rebase-i)
   #   %R - repository path
   #   %S - path in the repository
-  local branch_format="${_prompt_steeef_colors[1]}%b%f%u%c"
-  local action_format="${_prompt_steeef_colors[4]}|%a%f"
-  local unstaged_format="${_prompt_steeef_colors[2]}*%f"
-  local staged_format="${_prompt_steeef_colors[5]}*%f"
+  local branch_format="${_prompt_colors[1]}%b%f%u%c"
+  local action_format="${_prompt_colors[4]}|%a%f"
+  local unstaged_format="${_prompt_colors[2]}*%f"
+  local staged_format="${_prompt_colors[5]}*%f"
 
-  local hg_branch_format="${_prompt_steeef_colors[3]}%b%f%c%u"
-  local hg_action_format="${_prompt_steeef_colors[4]}|%a%f"
-  local hg_unstaged_format="${_prompt_steeef_colors[4]}*%f"
-  local hg_staged_format="${_prompt_steeef_colors[4]}*%f"
+  local hg_branch_format="${_prompt_colors[3]}%b%f%c%u"
+  local hg_action_format="${_prompt_colors[4]}|%a%f"
+  local hg_unstaged_format="${_prompt_colors[4]}*%f"
+  local hg_staged_format="${_prompt_colors[4]}*%f"
 
   # Set vcs_info parameters.
   # use-simple prevents the dirty flag from being available. Don't use it, but
@@ -100,14 +104,22 @@ function prompt_steeef_setup {
   zstyle ':vcs_info:hg*:prompt:*' actionformats "(${hg_branch_format}${hg_action_format})"
   zstyle ':vcs_info:hg*:prompt:*' formats "(${hg_branch_format})"
 
+  # Got this stuff from the dieter theme. That's dieter as a name, apparently,
+  # not one who diets. The idea is to display the time and have it colored by
+  # return code (red if >0).
+  # local time, color coded by last return code
+  time_enabled="%(?.${${fino_green}%}.%{${my_red}%})%*%{$reset_color%}"
+  time_disabled="${fino_green}%*%{$reset_color%}"
+  time=$time_enabled
+
   # Set python-info parameters.
   zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
 
   # Define prompts.
   PROMPT="
-${_prompt_steeef_colors[3]}%n%f at ${_prompt_steeef_colors[2]}%m%f in ${_prompt_steeef_colors[5]}%~%f "'${vcs_info_msg_0_}'"
-"'$python_info[virtualenv]'"$ "
-  RPROMPT=''
+${_prompt_colors[3]}%n%f at ${_prompt_colors[2]}%m%f in ${_prompt_colors[5]}%~%f "'${vcs_info_msg_0_}'"
+"'$python_info[virtualenv]'"${_prompt_colors[5]}${time}%f ${_prompt_colors[6]}%1d%f $ "
+  RPROMPT='${_prompt_colors[5]}%n@%m%f'
 }
 
 prompt_steeef_setup "$@"
