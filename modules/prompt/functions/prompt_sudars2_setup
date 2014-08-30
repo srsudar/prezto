@@ -20,7 +20,7 @@ function prompt_steeef_precmd {
     git_branch_format="[${_prompt_steeef_colors[2]}%b%f%u%c]"
   fi
 
-  zstyle ':vcs_info:*:prompt:*' formats "${git_branch_format}"
+  zstyle ':vcs_info:git*:prompt:*' formats "${git_branch_format}"
 
   vcs_info 'prompt'
 
@@ -80,11 +80,11 @@ function prompt_steeef_setup {
 
   # Set vcs_info parameters.
   zstyle ':vcs_info:*' enable git hg
-  zstyle ':vcs_info:*:prompt:*' check-for-changes true
-  zstyle ':vcs_info:*:prompt:*' unstagedstr "${git_ungit_staged_format}"
-  zstyle ':vcs_info:*:prompt:*' stagedstr "${git_staged_format}"
-  zstyle ':vcs_info:*:prompt:*' actionformats "[${git_branch_format}${git_action_format}]"
-  zstyle ':vcs_info:*:prompt:*' formats "[${git_branch_format}]"
+  zstyle ':vcs_info:git*:prompt:*' check-for-changes true
+  zstyle ':vcs_info:git*:prompt:*' unstagedstr "${git_ungit_staged_format}"
+  zstyle ':vcs_info:git*:prompt:*' stagedstr "${git_staged_format}"
+  zstyle ':vcs_info:git*:prompt:*' actionformats "[${git_branch_format}${git_action_format}]"
+  zstyle ':vcs_info:git*:prompt:*' formats "[${git_branch_format}]"
   zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
 
   # Set python-info parameters.
