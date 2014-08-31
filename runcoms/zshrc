@@ -103,3 +103,9 @@ export CATALINA_HOME=/usr/local/Cellar/tomcat/7.0.28
 # Adding generic coloriser. We'll see if it's useful.
 # New shell sessions will start using GRC after you add this to your profile:
 source "`brew --prefix`/etc/grc.bashrc"
+
+# Aug 31, 2014
+# Show the directory history. This works using the dh stack. See here for more
+# neat deets:
+# http://zsh.sourceforge.net/Intro/intro_6.html
+alias dh='dirs -v'
