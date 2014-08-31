@@ -93,3 +93,13 @@ alias getlo="cd ~/Dropbox/CSE/letitride/letitrideWorkspace"
 alias ls='ls -FG'
 alias ll='ls -lhF'
 alias la='ll -A'
+
+# Jul/8/2012 this is for Tomcat 6.0 (raises sword and strikes killing blow)
+#export JAVA_HOME=/Library/Java/Home
+export JAVA_HOME=$(/usr/libexec/java_home)
+export CATALINA_HOME=/usr/local/Cellar/tomcat/7.0.28
+
+# Aug 31, 2014
+# Adding generic coloriser. We'll see if it's useful.
+# New shell sessions will start using GRC after you add this to your profile:
+source "`brew --prefix`/etc/grc.bashrc"
