@@ -109,3 +109,9 @@ source "`brew --prefix`/etc/grc.bashrc"
 # neat deets:
 # http://zsh.sourceforge.net/Intro/intro_6.html
 alias dh='dirs -v'
+
+# Sep 1, 2014.
+# Annoyed with prezto's alias from rm to rm -i. Original output of `type rm`:
+# .zprezto [master] $ type rm                                                                                                                             sudars@Sams-MacBook-# rm is an alias for nocorrect rm -i
+# rm is /bin/rm
+alias rm='nocorrect rm'
