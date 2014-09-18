@@ -81,7 +81,7 @@ alias mvn=color_maven
 # July 22, 2014.
 # I need to use burp regularly at UPCH to proxy their proxy (yo dawg, I heard
 # you like proxies...), so aliasing that command.
-alias burp="java -jar -Xmx1024m ~/Dropbox/CSE/burpsuite_free_v1.6.jar"
+alias burp="java -jar -Xmx1024m ~/Dropbox/CSE/burpsuite_free_v1.6.jar >/dev/null 2>/dev/null"
 
 # Aug 21, 2014.
 # sick of having to type this
@@ -115,3 +115,35 @@ alias dh='dirs -v'
 # .zprezto [master] $ type rm                                                                                                                             sudars@Sams-MacBook-# rm is an alias for nocorrect rm -i
 # rm is /bin/rm
 alias rm='nocorrect rm'
+
+# Sep 2, 2014
+# Somehow my editor ended up being nano after this. The horror.
+# interesting answer as to the difference between these two:
+# http://unix.stackexchange.com/questions/4859/visual-vs-editor-whats-the-difference
+export VISUAL=vim
+export EDITOR='vi -e'
+
+# May 27, 2014
+# This is required to avoid having to edit the default merge message in git.
+export GIT_MERGE_AUTOEDIT=no
+
+# Sep 2, 2014
+# Sick of typing my burp proxy as run-time environment variables for all the
+# commands I have to run at upch. So, we'll make a global alias for these.
+alias -g UP='http_proxy="http://127.0.0.1:8080" https_proxy="https://127.0.0.1:8080" '
+
+# Jun13/2012 and this is for mysql
+PATH="/usr/local/mysql-5.5.25a-osx10.6-x86_64/bin":$PATH
+
+# Sep 18, 2014.
+# Stop confirming history expansions. I.e. (as without an ie I'm never, ever
+# going to remember what this actually does), with the power of expansion,
+# !$ means the last word of the previous command. E.g.
+# touch newfile
+# chmod a+x !$
+# means create that file and run the command `chmod a+x newfile`. However, with
+# history confirmation, hitting enter actually expands this to
+# `chmod a+x newfile` on a new prompt rather than just performing the 
+# substitution and running it, like all other commands do. Annoying. So, change
+# this. <TAB> will still perform it inline.
+unsetopt HIST_VERIFY
