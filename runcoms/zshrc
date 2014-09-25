@@ -147,3 +147,9 @@ PATH="/usr/local/mysql-5.5.25a-osx10.6-x86_64/bin":$PATH
 # substitution and running it, like all other commands do. Annoying. So, change
 # this. <TAB> will still perform it inline.
 unsetopt HIST_VERIFY
+
+# Sep 20, 2014. Bringing back the ANDROID_HOME variable.
+export ANDROID_HOME="/usr/local/opt/android-sdk"
+
+# Sep 25, 2014. Adding GRADLE_HOME variable.
+export GRADLE_HOME="/usr/local/opt/gradle/libexec"
