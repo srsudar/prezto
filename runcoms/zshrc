@@ -168,3 +168,5 @@ export PATH=${PATH}:${GOPATH}/bin
 # Annoyed with typing this again and again.
 alias gaetano='cd ~/Dropbox/Gaetano/code'
 alias github='cd ~/Dropbox/CSE/github'
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
