@@ -43,7 +43,7 @@ alias attu="ssh sudars@attu.cs.washington.edu"
 # I think.
 alias emacs="emacs-24.3 -nw"
 # And this is the most recent version of vim.
-alias vim="/Applications/MacVim-snapshot-71/MacVim.app/Contents/MacOS/Vim"
+alias vim="/Applications/MacVim-snapshot-73/MacVim.app/Contents/MacOS/Vim"
 
 # Jan 9, 2014
 # Starts a python server serving the contents of the current file
