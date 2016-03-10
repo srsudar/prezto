@@ -169,4 +169,9 @@ export PATH=${PATH}:${GOPATH}/bin
 alias gaetano='cd ~/Dropbox/Gaetano/code'
 alias github='cd ~/Dropbox/CSE/github'
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# 2015-08-24 following nvm's caveats from `brew install nvm`
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
