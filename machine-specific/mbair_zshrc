@@ -1,0 +1,69 @@
+# mbair only
+
+# Jul/8/2012 this is for Tomcat 6.0 (raises sword and strikes killing blow)
+#export JAVA_HOME=/Library/Java/Home
+export JAVA_HOME=$(/usr/libexec/java_home)
+export CATALINA_HOME=/usr/local/Cellar/tomcat/7.0.28
+
+# Aug 31, 2014
+# Adding generic coloriser. We'll see if it's useful.
+# New shell sessions will start using GRC after you add this to your profile:
+source "`brew --prefix`/etc/grc.bashrc"
+
+# We want to use the most recent emacs, not version 22
+# that comes installed on Apple. And we want to run it with
+# the -nw flags, which will make it be in the terminal,
+# I think.
+alias emacs="emacs-24.3 -nw"
+# And this is the most recent version of vim.
+alias vim="/Applications/MacVim-snapshot-73/MacVim.app/Contents/MacOS/Vim"
+
+# July 22, 2014.
+# I need to use burp regularly at UPCH to proxy their proxy (yo dawg, I heard
+# you like proxies...), so aliasing that command.
+alias burp="java -jar -Xmx1024m ~/Dropbox/CSE/burpsuite_free_v1.6.jar >/dev/null 2>/dev/null"
+
+# Aug 21, 2014.
+# sick of having to type this
+alias getlo="cd ~/Dropbox/CSE/letitride/letitrideWorkspace"
+
+# Sep 2, 2014
+# Sick of typing my burp proxy as run-time environment variables for all the
+# commands I have to run at upch. So, we'll make a global alias for these.
+alias -g UP='http_proxy="http://127.0.0.1:8080" https_proxy="https://127.0.0.1:8080" '
+
+# Sep 20, 2014. Bringing back the ANDROID_HOME variable.
+export ANDROID_HOME="/usr/local/opt/android-sdk"
+
+# Sep 25, 2014. Adding GRADLE_HOME variable.
+export GRADLE_HOME="/usr/local/opt/gradle/libexec"
+
+# May 22, 2014. Setting up go. Installed via `brew install go`.
+GOROOT=/usr/local/opt/go/libexec
+export GOROOT
+export PATH=${PATH}:${GOROOT}/bin
+# According to this, you should create a special directory for your go
+# workspace: http://golang.org/doc/code.html. This should NOT be the same as
+# your installation location of go.
+export GOPATH=${HOME}/go
+export PATH=${PATH}:${GOPATH}/bin
+
+# Sep 29, 2014
+# Annoyed with typing this again and again.
+alias gaetano='cd ~/Dropbox/Gaetano/code'
+alias github='cd ~/Dropbox/CSE/github'
+
+# Jun13/2012 and this is for mysql
+PATH="/usr/local/mysql-5.5.25a-osx10.6-x86_64/bin":$PATH
+
+# 2015-08-24 following nvm's caveats from `brew install nvm`
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+# 2016-04-15 Try to get latexmk back on path
+export PATH=${PATH}:/usr/local/texlive/2012/bin/x86_64-darwin
+
+# added by travis gem
+[ -f /Users/sudars/.travis/travis.sh ] && source /Users/sudars/.travis/travis.sh
+
+# ex: filetype=zsh
