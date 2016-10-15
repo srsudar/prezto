@@ -1,3 +1,60 @@
+# My Custom `prezto`
+
+I maintain this separately from my other
+[dotfiles](https://github.com/srsudar/dotfiles). For the most part, these
+should be installed by by cloning this repo and following the "Installation"
+section below. A few things to note, however, that I always mess up:
+* Follow the instructions exactly. All of them, including launching `zsh` to
+    begin.
+    * **For real**. They are specific, and invariably I try to copy them and
+        get a stupid naming convention wrong, like the annoying `prezto` to
+        `.zprezto` directory name, and mess something up. Just copy them, with
+        the exception pointed out below.
+    * **Except**: clone my own repo, not sorin-ionescu's as shown in the clone
+        URL. Depending on my terminal (iTerm2, Ubuntu's), `chsh` might not be
+        enough, so you might also have to do whatever the terminal of choice
+        requires.
+* See the next section on machine-specific configuration.
+
+## Machine-Specific Configuration
+
+I have added a convention for machine-specific configuration that doesn't
+exist, so far as I know, in the original Prezto project. Alongside the
+`runcoms/` directory, I've added a `machine-specific/` directory. Config
+specific to certain machines (e.g. `/usr/local/Cellar/` on a Mac) belongs in
+files in that directory.
+
+In order to source those files appropriately, I've also taken to assigning each
+machine a name. E.g. my Macbook Air is `mbair`. The existence of a file
+`~/.zshMachineFlag_machineName` indicates the current machine. Adding a line
+like this to `runcoms/zshrc` ensures that we source the file appropriately:
+
+```
+if [[ -a ~/.zshMachineFlag_mbair ]]; then
+  source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/mbair_zshrc
+fi
+```
+
+### First-time Setup
+
+Here are the steps to set this up for the first time:
+* Determine a machine name. For this example we'll say it's foo.
+* If custom configuration is required, add it to `machine-specific/foo_zshrc`.
+* Execute `touch ~/.zshMachineFlag_foo`.
+* Add these lines to `runcoms/zshrc`:
+```
+if [[ -a ~/.zshMachineFlag_foo ]]; then
+  source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/mbair_foo
+fi
+```
+
+### Repeat Setup
+In this case we don't need to worry about editing the files. Just:
+* `touch ~/.zshMachineFlag_foo`
+
+
+> Old README below.
+
 Prezto — Instantly Awesome Zsh
 ==============================
 

@@ -15,8 +15,6 @@ source "`brew --prefix`/etc/grc.bashrc"
 # the -nw flags, which will make it be in the terminal,
 # I think.
 alias emacs="emacs-24.3 -nw"
-# And this is the most recent version of vim.
-alias vim="/Applications/MacVim-snapshot-73/MacVim.app/Contents/MacOS/Vim"
 
 # July 22, 2014.
 # I need to use burp regularly at UPCH to proxy their proxy (yo dawg, I heard
