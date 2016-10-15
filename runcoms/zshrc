@@ -112,27 +112,6 @@ export GIT_MERGE_AUTOEDIT=no
 # this. <TAB> will still perform it inline.
 unsetopt HIST_VERIFY
 
-# Sep 20, 2014. Bringing back the ANDROID_HOME variable.
-export ANDROID_HOME="/usr/local/opt/android-sdk"
-
-# Sep 25, 2014. Adding GRADLE_HOME variable.
-export GRADLE_HOME="/usr/local/opt/gradle/libexec"
-
-# May 22, 2014. Setting up go. Installed via `brew install go`.
-GOROOT=/usr/local/opt/go/libexec
-export GOROOT
-export PATH=${PATH}:${GOROOT}/bin
-# According to this, you should create a special directory for your go
-# workspace: http://golang.org/doc/code.html. This should NOT be the same as
-# your installation location of go.
-export GOPATH=${HOME}/go
-export PATH=${PATH}:${GOPATH}/bin
-
-# Sep 29, 2014
-# Annoyed with typing this again and again.
-alias gaetano='cd ~/Dropbox/Gaetano/code'
-alias github='cd ~/Dropbox/CSE/github'
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
