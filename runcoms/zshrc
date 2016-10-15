@@ -43,7 +43,6 @@ alias attu="ssh sudars@attu.cs.washington.edu"
 # I think.
 alias emacs="emacs-24.3 -nw"
 # And this is the most recent version of vim.
-alias vim="/Applications/MacVim-snapshot-73/MacVim.app/Contents/MacOS/Vim"
 
 # Jan 9, 2014
 # Starts a python server serving the contents of the current file
@@ -175,3 +174,9 @@ alias github='cd ~/Dropbox/CSE/github'
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# 2016-04-15 Try to get latexmk back on path
+export PATH=${PATH}:/usr/local/texlive/2012/bin/x86_64-darwin
+
+# added by travis gem
+[ -f /Users/sudars/.travis/travis.sh ] && source /Users/sudars/.travis/travis.sh
