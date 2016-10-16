@@ -53,6 +53,23 @@ In this case we don't need to worry about editing the files. Just:
 * `touch ~/.zshMachineFlag_foo`
 
 
+## Selective `vcs_info`
+
+`vcs_info` allows for integration of version control systems with your prompt.
+This can be slow, however, depending on the options you're supporting.
+`check-for-changes` in particular can be slow on big `git` repos like Chromium,
+e.g. To get around this, I've added a function based on [this
+method](https://github.com/johan/zsh/blob/master/Misc/vcs_info-examples#L88-L102)
+that allows selective disabling of `check-for-changes` on a machine-specific
+basis.
+
+In order to indicate that you do not want `check-for-changes` to be true, add
+an element to the `ZSHMS_VCSINFO_NO_CHECK_CHANGES` array with the absolute path
+to the directory you want ignored. See `machine-specific/mbair_zshrc` for an
+example. This variable is then looked for in the prompt command to selectively
+enable or disable `check-for-changes`.
+
+
 > Old README below.
 
 Prezto — Instantly Awesome Zsh
