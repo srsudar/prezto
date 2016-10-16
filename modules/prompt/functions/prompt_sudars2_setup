@@ -21,6 +21,30 @@ function hg_check_for_untracked_files {
   DO_HG=true
 }
 
+# This is a function that indicates when a specific directory should enable
+# vcs_info's check-for-changes functionality. This can be expensive, so we want
+# to support conditional disabling in case someone is workin on a huge project
+# like chromium, where the prompt would become very slow. Machines should add
+# directories to their specific configuration in
+# ZSHMS_VCSINFO_NO_CHECK_CHANGES. This must contain an Array. The return values
+# and how it interplays with the check-for-changes option below confuses me
+# quite a bit. Couldn't make sense of it, but this seems to be working.
+#
+# This was based on:
+# https://github.com/johan/zsh/blob/master/Misc/vcs_info-examples#L88-L102,
+# with added support for machine-specific changes.
+#
+function do_check_for_changes() {
+  local d
+
+  for d in ${ZSHMS_VCSINFO_NO_CHECK_CHANGES}; do
+    d=${d%/##}
+    [[ $PWD == $d(|/*) ]] && return 1
+  done
+  # We didn't match a list of forbidden directories.
+  return 0
+}
+
 function prompt_steeef_precmd {
   # Check for untracked files or updated submodules since vcs_info does not.
   if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
@@ -109,7 +133,11 @@ function prompt_steeef_setup {
 
   # Set vcs_info parameters.
   zstyle ':vcs_info:*' enable git hg
-  zstyle ':vcs_info:*:prompt:*' check-for-changes true
+
+  # See the comment at the definition of do_check_for_changes to see the source
+  # of this method.
+  zstyle -e ':vcs_info:*:prompt:*' check-for-changes \
+    'do_check_for_changes && reply=( true ) || reply=( false )'
 
   # git params
   zstyle ':vcs_info:git*:prompt:*' unstagedstr "${git_ungit_staged_format}"
@@ -151,3 +179,4 @@ ${_prompt_colors[8]}${time}%f ${_prompt_colors[8]}in ${_prompt_colors[8]}%~%f
 
 prompt_steeef_setup "$@"
 
+# ex: filetype=zsh

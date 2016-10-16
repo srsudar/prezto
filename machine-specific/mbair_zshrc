@@ -1,5 +1,20 @@
 # mbair only
 
+# ========
+# Globals for zsh scripts.
+# ZSHMS is for 'zsh machine specific'.
+
+# These are the local directories for which vcs_info should not check for
+# changes. Array syntax is `variable=('foo' 'bar')`.
+#
+# If a repo is taking too long to check for changes (e.g. chromium), add the
+# full path to that repo to this array.
+ZSHMS_VCSINFO_NO_CHECK_CHANGES=(
+  '/abs/path/to/dir-that-you-do-not-want-checked/'
+)
+
+# ========
+
 # Jul/8/2012 this is for Tomcat 6.0 (raises sword and strikes killing blow)
 #export JAVA_HOME=/Library/Java/Home
 export JAVA_HOME=$(/usr/libexec/java_home)
