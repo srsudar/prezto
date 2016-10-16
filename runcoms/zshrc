@@ -116,6 +116,15 @@ unsetopt HIST_VERIFY
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
+
+##############################################################################
+# Machine and platform specific configuration.
+##############################################################################
+
+# ================
+# Machine Specific
+# ================
+
 # Here we'll start custom sourcing zshrc files based on which machine we're on.
 # There are several ways to do this. Some of my machines, namely my meerkat,
 # consistently returns 'sam-meerkat' when running `hostname`. My mbair does
@@ -128,3 +137,28 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 if [[ -a ~/.zshMachineFlag_mbair ]]; then
   source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/mbair_zshrc
 fi
+
+# =================
+# Platform Specific
+# =================
+
+func source_platform_file() {
+  local platform
+  platform="$(uname -s)"
+
+  case $platform in
+    Linux)
+      source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/linux_zshrc
+      ;;
+    Darwin)
+      source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/osx_zshrc
+      ;;
+  esac
+}
+
+source_platform_file
+
+
+##############################################################################
+# END Machine and platform specific configuration.
+##############################################################################

@@ -1,0 +1,11 @@
+# ############################################################################
+# OSX-specific zshrc that does not depend on a particular machine, but rather
+# on the platform.
+# ############################################################################
+
+# `ls` has different options for color across platforms.
+# On OSX it is -G.
+alias ls='ls -FG'
+
+
+# ex: filetype=zsh

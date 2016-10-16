@@ -1,0 +1,14 @@
+# ############################################################################
+# Linux-specific zshrc that does not depend on a particular machine, but rather
+# on the platform.
+# ############################################################################
+
+# `ls` has different options for color across platforms.
+# On Linux it is `--color`.
+# NB: I know this is more version-specific than platform specific, but I'm
+# calling it platform-specific as it is straight forward and will cover 99% of
+# cases.
+alias ls='ls --color -F'
+
+
+# ex: filetype=zsh
