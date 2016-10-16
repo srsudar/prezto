@@ -166,6 +166,10 @@ if [[ -a ~/.zshMachineFlag_mbair ]]; then
   source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/mbair_zshrc
 fi
 
+if [[ -a ~/.zshMachineFlag_meerkat ]]; then
+  source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/meerkat_zshrc
+fi
+
 
 ##############################################################################
 # END Machine and platform specific configuration.
