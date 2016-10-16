@@ -69,10 +69,8 @@ function color_maven() {
 
 alias mvn=color_maven
 
-# Aug 30, 2014
-# After prezto, ls is aliased to ls -G. I like the trailing /s and @s, so let's
-# add the F option.
-alias ls='ls -FG'
+# Colorizing output is handled in machine-specific/<platform>_zshrc, as the
+# argument varies across platforms.
 alias ll='ls -lhF'
 alias la='ll -A'
 
