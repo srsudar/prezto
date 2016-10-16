@@ -119,22 +119,23 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # Machine and platform specific configuration.
 ##############################################################################
 
-# ================
-# Machine Specific
-# ================
-
 # Here we'll start custom sourcing zshrc files based on which machine we're on.
-# There are several ways to do this. Some of my machines, namely my meerkat,
-# consistently returns 'sam-meerkat' when running `hostname`. My mbair does
-# not. For now, I am going to adopt a convention where each machine has its own
-# name (e.g. mbair, meerkat). Each machine indicates it existence by the
-# presences of a file named "~/.zshMachineFlag_machineName". E.g. mbair would,
-# upon first time initialization, execute `touch ~/.zshMachineFlag_mbair`. For
-# more configuration instructions, see my dotfiles and prezto READMEs.
+# Platform is sourced first, to attempt to allow overrides for more
+# machine-specific configuration.
+#
+# Platform-specific configuration is based on the output of `uname -s`.
+#
+# As for machine-specific, there are several ways to do this. Some of my
+# machines, namely my meerkat, consistently returns 'sam-meerkat' when running
+# `hostname`. My mbair does not. For now, I am going to adopt a convention
+# where each machine has its own name (e.g. mbair, meerkat). Each machine
+# indicates it existence by the presences of a file named
+# "~/.zshMachineFlag_machineName". E.g. mbair would, upon first time
+# initialization, execute `touch ~/.zshMachineFlag_mbair`. That is then added
+# to the if statement below and sourced as appropriate.
+#
+# For more configuration instructions, see my dotfiles and prezto READMEs.
 
-if [[ -a ~/.zshMachineFlag_mbair ]]; then
-  source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/mbair_zshrc
-fi
 
 # =================
 # Platform Specific
@@ -155,6 +156,15 @@ func source_platform_file() {
 }
 
 source_platform_file
+
+
+# ================
+# Machine Specific
+# ================
+
+if [[ -a ~/.zshMachineFlag_mbair ]]; then
+  source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/mbair_zshrc
+fi
 
 
 ##############################################################################

@@ -35,6 +35,13 @@ if [[ -a ~/.zshMachineFlag_mbair ]]; then
 fi
 ```
 
+## Platform-Specific Configuration
+
+Configuration that varies across platform (e.g. standard `ls` versions), is
+configured in `.zprezto/machine-specific/<platform>_zshrc`, with platform named
+according to the output of `uname -s` and converted to lower case. These files
+are sourced before machine-specific files to try allow more specific overrides.
+
 ### First-time Setup
 
 Here are the steps to set this up for the first time:
