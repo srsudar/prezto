@@ -1,4 +1,7 @@
 alias android-studio=/usr/local/android-studio/bin/studio.sh
 alias studio='android-studio'
 
+# We need depot_tools on our PATH for chromium development.
+export PATH=${PATH}:/media/sudars/Extra\ Drive\ \1/code/depot_tools
+
 # ex: filetype=zsh
