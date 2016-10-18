@@ -4,4 +4,13 @@ alias studio='android-studio'
 # We need depot_tools on our PATH for chromium development.
 export PATH=${PATH}:/media/sudars/Extra\ Drive\ \1/code/depot_tools
 
+# These are the local directories for which vcs_info should not check for
+# changes. Array syntax is `variable=('foo' 'bar')`.
+#
+# If a repo is taking too long to check for changes (e.g. chromium), add the
+# full path to that repo to this array.
+ZSHMS_VCSINFO_NO_CHECK_CHANGES=(
+  "/media/sudars/Extra Drive 1/code/chromium/src"
+)
+
 # ex: filetype=zsh
