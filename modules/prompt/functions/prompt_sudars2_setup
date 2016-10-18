@@ -26,15 +26,19 @@ function hg_check_for_untracked_files {
 # to support conditional disabling in case someone is workin on a huge project
 # like chromium, where the prompt would become very slow. Machines should add
 # directories to their specific configuration in
-# ZSHMS_VCSINFO_NO_CHECK_CHANGES. This must contain an Array. The return values
-# and how it interplays with the check-for-changes option below confuses me
-# quite a bit. Couldn't make sense of it, but this seems to be working.
+# ZSHMS_VCSINFO_NO_CHECK_CHANGES. This must contain an Array.
 #
 # This was based on:
 # https://github.com/johan/zsh/blob/master/Misc/vcs_info-examples#L88-L102,
 # with added support for machine-specific changes.
 #
 function do_check_for_changes() {
+  # NB: The return values here are counterintuitive to me, who has recently
+  # been working in JavaScript. In zsh 0 is true and >0 is false (at least for
+  # the purposes of if checks). This seems marginally less insane if you think
+  # of return values as 0 success, >0 an error. In this case we'll return 0 for
+  # no match, or to DO check for changes, and 1 for a match, or to NOT check
+  # for changes.
   local d
 
   for d in ${ZSHMS_VCSINFO_NO_CHECK_CHANGES}; do
@@ -46,11 +50,20 @@ function do_check_for_changes() {
 }
 
 function prompt_steeef_precmd {
-  # Check for untracked files or updated submodules since vcs_info does not.
-  if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-    git_branch_format=" [${_prompt_colors[2]}%b%f%u%c${_prompt_colors[4]}?%f]"
-  else
-    git_branch_format=" [${_prompt_colors[2]}%b%f%u%c]"
+  # According to the creator of this function (maybe steeef?), vcs_info does
+  # not check for untracked files via any option. Thus we are going to hard
+  # code it into the prompt itself.
+  #
+  # We only want to do this hardcoding if do_check_for_changes returns true.
+  # Otherwise we will not.
+  git_branch_format=" [${_prompt_colors[2]}%b%f%u%c]"
+  if do_check_for_changes; then
+    # Check for untracked files via an external call, updating the prompt as
+    # appropriate. Do nothing if we fail the check, as we've set the default
+    # prompt above.
+    if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
+      git_branch_format=" [${_prompt_colors[2]}%b%f%u%c${_prompt_colors[4]}?%f]"
+    fi
   fi
 
   zstyle ':vcs_info:git*:prompt:*' formats "${git_branch_format}"
