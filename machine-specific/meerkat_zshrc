@@ -2,7 +2,7 @@ alias android-studio=/usr/local/android-studio/bin/studio.sh
 alias studio='android-studio'
 
 # We need depot_tools on our PATH for chromium development.
-export PATH=${PATH}:/media/sudars/Extra\ Drive\ \1/code/depot_tools
+export PATH=${PATH}:/media/sudars/ExternalDrive1/code/depot_tools
 
 # These are the local directories for which vcs_info should not check for
 # changes. Array syntax is `variable=('foo' 'bar')`.
