@@ -10,7 +10,7 @@ export PATH=${PATH}:/media/sudars/Extra\ Drive\ \1/code/depot_tools
 # If a repo is taking too long to check for changes (e.g. chromium), add the
 # full path to that repo to this array.
 ZSHMS_VCSINFO_NO_CHECK_CHANGES=(
-  "/media/sudars/Extra Drive 1/code/chromium/src"
+  "/media/sudars/ExternalDrive1/code/chromium/src"
 )
 
 # ex: filetype=zsh
