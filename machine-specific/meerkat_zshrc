@@ -4,6 +4,9 @@ alias studio='android-studio'
 # We need depot_tools on our PATH for chromium development.
 export PATH=${PATH}:/media/sudars/ExternalDrive1/code/depot_tools
 
+export ANDROID_HOME=/home/sudars/Android/Sdk
+
+
 # These are the local directories for which vcs_info should not check for
 # changes. Array syntax is `variable=('foo' 'bar')`.
 #
