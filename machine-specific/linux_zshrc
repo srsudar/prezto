@@ -10,5 +10,9 @@
 # cases.
 alias ls='ls --color -F'
 
+# Mimicking OSX's pbcopy tool.
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
 
 # ex: filetype=zsh
