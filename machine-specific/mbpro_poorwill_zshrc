@@ -1,8 +1,13 @@
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
 # For GOROOT, according to homewbrew message after `brew install go`
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH=${PATH}:/usr/local/opt/go/libexec/bin
 
-export GOPATH=$home/code
+export GOPATH=${HOME}/code
 
 alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
+
+# 2017-01-13 put mactex binaries on PATH
+export PATH=${PATH}:/usr/local/texlive/2016/bin/x86_64-darwin
+
+# ex: filetype=zsh
