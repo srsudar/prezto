@@ -10,4 +10,8 @@ alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 # 2017-01-13 put mactex binaries on PATH
 export PATH=${PATH}:/usr/local/texlive/2016/bin/x86_64-darwin
 
+# Make sure to use the correct vim.
+export VISUAL=/Applications/MacVim.app/Contents/MacOS/Vim
+export EDITOR='vim'
+
 # ex: filetype=zsh
