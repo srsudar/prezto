@@ -157,6 +157,28 @@ func source_platform_file() {
 
 source_platform_file
 
+func is_linux() {
+  local platform
+  platform="$(uname -s)"
+  if [[ ${platform} = Linux ]]
+  then
+    return 0
+  else
+    return 1
+  fi
+}
+
+func is_mac() {
+  local platform
+  platform="$(uname -s)"
+  if [[ ${platform} = Darwin ]]
+  then
+    return 0
+  else
+    return 1
+  fi
+}
+
 
 # ================
 # Machine Specific
@@ -172,6 +194,11 @@ fi
 
 if [[ -a ~/.zshMachineFlag_mbpro_poorwill ]]; then
   source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/mbpro_poorwill_zshrc
+fi
+
+if [[ -a ~/.zshMachineFlag_worklinux ]]; then
+  source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/worklinux_zshrc
+  source "${ZDOTDIR:-$HOME}"/.zshrc-glinux
 fi
 
 
