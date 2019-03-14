@@ -20,6 +20,11 @@ function spectrum_ls() {
   done
 }
 
+# mmv to move many files easily
+# http://www.mfasold.net/blog/2008/11/moving-or-renaming-multiple-files/
+autoload -U zmv
+alias mmv='noglob zmv -W'
+
 # Show all 256 colors where the background is set to specific color
 function spectrum_bls() {
   for code in {000..255}; do
@@ -184,6 +189,28 @@ func source_platform_file() {
 
 source_platform_file
 
+func is_linux() {
+  local platform
+  platform="$(uname -s)"
+  if [[ ${platform} = Linux ]]
+  then
+    return 0
+  else
+    return 1
+  fi
+}
+
+func is_mac() {
+  local platform
+  platform="$(uname -s)"
+  if [[ ${platform} = Darwin ]]
+  then
+    return 0
+  else
+    return 1
+  fi
+}
+
 
 # ================
 # Machine Specific
@@ -199,6 +226,11 @@ fi
 
 if [[ -a ~/.zshMachineFlag_mbpro_poorwill ]]; then
   source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/mbpro_poorwill_zshrc
+fi
+
+if [[ -a ~/.zshMachineFlag_worklinux ]]; then
+  source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/worklinux_zshrc
+  source "${ZDOTDIR:-$HOME}"/.zshrc-glinux
 fi
 
 
