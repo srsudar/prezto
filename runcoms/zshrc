@@ -38,7 +38,7 @@ alias attu="ssh sudars@attu.cs.washington.edu"
 
 # Jan 9, 2014
 # Starts a python server serving the contents of the current file
-alias serve="python -m SimpleHTTPServer 8888"
+alias serve="python -m http.server 8888"
 
 # May 20, 2014. Colorizing mvn output.
 # Taken from: https://github.com/builddoctor/maven-antsy-color
@@ -93,6 +93,23 @@ alias rm='nocorrect rm'
 export VISUAL=vim
 export EDITOR='vi -e'
 
+# Don't allow nested nvim instances when in nvim's terminal mode. Instead,
+# remaps to nvr, which is neovim-remote, to open things in the existing neovim
+# instance.
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+  if [ -x "$(command -v nvr)" ]; then
+    alias nvim=nvr
+  else
+   alias nvim='echo "No nesting!"'
+  fi
+fi
+
+# Count word changes in a git commit. Modified from the below URL, with a few
+# changes to accommodate my workflow.
+alias gitwa='git diff --word-diff=porcelain | grep -e "^+[^+]" | wc -w | xargs'
+alias gitwd='git diff --word-diff=porcelain | grep -e "^-[^-]" | wc -w | xargs'
+alias gitw='echo $(($(gitwa) - $(gitwd)))'
+
 # May 27, 2014
 # This is required to avoid having to edit the default merge message in git.
 export GIT_MERGE_AUTOEDIT=no
@@ -111,9 +128,19 @@ export GIT_MERGE_AUTOEDIT=no
 unsetopt HIST_VERIFY
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Use ripgrep for fzf. This respects ignore files in version control.
+export FZF_DEFAULT_COMMAND='rg --files'
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
+export PATH="$PATH:$HOME/.local/bin" # for nvr
+
+# Adding flutter sdk to path.
+export PATH=${PATH}:/Users/sudars/code/flutter-sdk/flutter/bin
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ##############################################################################
 # Machine and platform specific configuration.

@@ -10,5 +10,7 @@ alias ls='ls -FG'
 # Shorcut to journal and notes dir
 alias journal='cd ~/Dropbox/writing/journal/'
 alias notes='cd ~/Dropbox/Documents/notes/'
+alias pubs='cd ~/Dropbox/Pubs'
+alias thesis='cd ~/Dropbox/Pubs/2016/phd-thesis/latex-files'
 
 # ex: filetype=zsh

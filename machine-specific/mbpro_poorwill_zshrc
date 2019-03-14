@@ -1,5 +1,3 @@
-export ANDROID_HOME=/usr/local/opt/android-sdk
-
 # For GOROOT, according to homewbrew message after `brew install go`
 export PATH=${PATH}:/usr/local/opt/go/libexec/bin
 
@@ -13,5 +11,17 @@ export PATH=${PATH}:/usr/local/texlive/2016/bin/x86_64-darwin
 # Make sure to use the correct vim.
 export VISUAL=/Applications/MacVim.app/Contents/MacOS/Vim
 export EDITOR='vim'
+
+# Put anaconda on path
+export PATH=~/anaconda/bin:${PATH}
+
+# For flutter development
+# export PATH='/Users/sudars/code/flutter/bin':${PATH}
+
+# Dart pub on path
+export PATH=${PATH}:"${HOME}/.pub-cache/bin"
+
+# The location of the dart SDK. The `brew install` told me to note it.
+# /usr/local/opt/dart/libexec
 
 # ex: filetype=zsh
