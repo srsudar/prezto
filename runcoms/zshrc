@@ -12,6 +12,11 @@ fi
 
 # Customize to your needs...
 
+# colors for ls that I like for some reason. I used to have them in
+# modules/utility/init.zsh, where prezto defines defaults.
+export LS_COLORS="di=96;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+
 # Cribbing the spectrum_ls command from oh my zsh.
 
 function spectrum_ls() {
