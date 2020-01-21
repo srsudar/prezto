@@ -49,6 +49,11 @@ alias attu="ssh sudars@attu.cs.washington.edu"
 # Jan 9, 2014
 # Starts a python server serving the contents of the current file
 alias serve="python -m http.server 8888"
+alias serve3="python3 -m http.server 8888"
+
+# Clears the terminal deleting scrollback, making it easier to get to the top of
+# a command output.
+alias clearf="clear && printf '\e[3J'"
 
 # May 20, 2014. Colorizing mvn output.
 # Taken from: https://github.com/builddoctor/maven-antsy-color
@@ -101,7 +106,7 @@ alias rm='nocorrect rm'
 # interesting answer as to the difference between these two:
 # http://unix.stackexchange.com/questions/4859/visual-vs-editor-whats-the-difference
 export VISUAL=vim
-export EDITOR='vi -e'
+export EDITOR=vim
 
 # Don't allow nested nvim instances when in nvim's terminal mode. Instead,
 # remaps to nvr, which is neovim-remote, to open things in the existing neovim
@@ -140,6 +145,17 @@ unsetopt HIST_VERIFY
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Use ripgrep for fzf. This respects ignore files in version control.
 export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_CTRL_T_COMMAND='rg --files'
+
+# use a pager for ripgrep.
+# https://github.com/BurntSushi/ripgrep/issues/86#issuecomment-364968686
+rg() {
+  if [ -t 1 ]; then
+    command rg -p "$@" | less -RFX
+  else
+    command rg "$@"
+  fi
+}
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
