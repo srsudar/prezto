@@ -129,6 +129,10 @@ alias gitw='echo $(($(gitwa) - $(gitwd)))'
 # This is required to avoid having to edit the default merge message in git.
 export GIT_MERGE_AUTOEDIT=no
 
+# Disable scroll lock. No more ctrl-s to freeze the terminal, with a ctrl-q to
+# unfreeze.
+stty -ixon
+
 # Sep 18, 2014.
 # Stop confirming history expansions. I.e. (as without an ie I'm never, ever
 # going to remember what this actually does), with the power of expansion,
