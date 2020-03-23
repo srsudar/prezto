@@ -46,6 +46,11 @@ alias myip="ifconfig | grep 'inet ' | grep -v '127.0.0.1' | cut -d\  -f2"
 alias attux="ssh -X sudars@attu.cs.washington.edu"
 alias attu="ssh sudars@attu.cs.washington.edu"
 
+# Syntax highlighting at the shell. Must first install via:
+# git clone https://github.com/zdharma/fast-syntax-highlighting  ~/.zsh/fast-syntax-highlighting
+source ~/.fsh/fast-syntax-highlighting.plugin.zsh
+fast-theme -q free
+
 # Jan 9, 2014
 # Starts a python server serving the contents of the current file
 alias serve="python -m http.server 8888"
