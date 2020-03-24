@@ -84,6 +84,16 @@ alias mvn=color_maven
 alias ll='ls -lhF'
 alias la='ll -A'
 
+# Use less with rg
+rg () {
+  if [ -t 1 ]
+  then
+    command rg -p "$@" | less -RFX
+  else
+    command rg "$@"
+  fi
+}
+
 # Aug 31, 2014
 # Show the directory history. This works using the dh stack. See here for more
 # neat deets:
@@ -138,8 +148,10 @@ export GIT_MERGE_AUTOEDIT=no
 unsetopt HIST_VERIFY
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# Use ripgrep for fzf. This respects ignore files in version control.
-export FZF_DEFAULT_COMMAND='rg --files'
+# Use ripgrep for fzf. This respects ignore files in version control. Don't
+# search node_modules (`--iglob`).
+export FZF_DEFAULT_COMMAND="rg --files --iglob='!node_modules'"
+export FZF_CTRL_T_COMMAND="rg --files --iglob='!node_modules'"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
