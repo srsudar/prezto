@@ -46,9 +46,19 @@ alias myip="ifconfig | grep 'inet ' | grep -v '127.0.0.1' | cut -d\  -f2"
 alias attux="ssh -X sudars@attu.cs.washington.edu"
 alias attu="ssh sudars@attu.cs.washington.edu"
 
+# Syntax highlighting at the shell. Must first install via:
+# git clone https://github.com/zdharma/fast-syntax-highlighting  ~/.zsh/fast-syntax-highlighting
+source ~/.fsh/fast-syntax-highlighting.plugin.zsh
+fast-theme -q free
+
 # Jan 9, 2014
 # Starts a python server serving the contents of the current file
 alias serve="python -m http.server 8888"
+alias serve3="python3 -m http.server 8888"
+
+# Clears the terminal deleting scrollback, making it easier to get to the top of
+# a command output.
+alias clearf="clear && printf '\e[3J'"
 
 # May 20, 2014. Colorizing mvn output.
 # Taken from: https://github.com/builddoctor/maven-antsy-color
@@ -111,7 +121,7 @@ alias rm='nocorrect rm'
 # interesting answer as to the difference between these two:
 # http://unix.stackexchange.com/questions/4859/visual-vs-editor-whats-the-difference
 export VISUAL=vim
-export EDITOR='vi -e'
+export EDITOR=vim
 
 # Don't allow nested nvim instances when in nvim's terminal mode. Instead,
 # remaps to nvr, which is neovim-remote, to open things in the existing neovim
@@ -134,6 +144,10 @@ alias gitw='echo $(($(gitwa) - $(gitwd)))'
 # This is required to avoid having to edit the default merge message in git.
 export GIT_MERGE_AUTOEDIT=no
 
+# Disable scroll lock. No more ctrl-s to freeze the terminal, with a ctrl-q to
+# unfreeze.
+stty -ixon
+
 # Sep 18, 2014.
 # Stop confirming history expansions. I.e. (as without an ie I'm never, ever
 # going to remember what this actually does), with the power of expansion,
@@ -152,6 +166,16 @@ unsetopt HIST_VERIFY
 # search node_modules (`--iglob`).
 export FZF_DEFAULT_COMMAND="rg --files --iglob='!node_modules'"
 export FZF_CTRL_T_COMMAND="rg --files --iglob='!node_modules'"
+
+# use a pager for ripgrep.
+# https://github.com/BurntSushi/ripgrep/issues/86#issuecomment-364968686
+rg() {
+  if [ -t 1 ]; then
+    command rg -p "$@" | less -RFX
+  else
+    command rg "$@"
+  fi
+}
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 

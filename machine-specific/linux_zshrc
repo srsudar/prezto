@@ -14,5 +14,8 @@ alias ls='ls --color -F'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
+# fd for better `find` functionality
+alias fd=fdfind
+
 
 # ex: filetype=zsh
