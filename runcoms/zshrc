@@ -262,7 +262,6 @@ if [[ -a ~/.zshMachineFlag_mbpro_poorwill ]]; then
 fi
 
 if [[ -a ~/.zshMachineFlag_worklinux ]]; then
-  source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/worklinux_zshrc
   source "${ZDOTDIR:-$HOME}"/.zshrc-glinux
 fi
 
