@@ -13,9 +13,6 @@ export EDITOR='vim'
 # Put anaconda on path
 export PATH=~/anaconda/bin:${PATH}
 
-# For flutter development
-# export PATH='/Users/sudars/code/flutter/bin':${PATH}
-
 # Dart pub on path
 export PATH=${PATH}:"${HOME}/.pub-cache/bin"
 

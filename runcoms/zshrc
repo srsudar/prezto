@@ -47,7 +47,7 @@ alias attux="ssh -X sudars@attu.cs.washington.edu"
 alias attu="ssh sudars@attu.cs.washington.edu"
 
 # Syntax highlighting at the shell. Must first install via:
-# git clone https://github.com/zdharma/fast-syntax-highlighting  ~/.zsh/fast-syntax-highlighting
+# git clone https://github.com/zdharma/fast-syntax-highlighting  ~/.fsh
 source ~/.fsh/fast-syntax-highlighting.plugin.zsh
 fast-theme -q free
 
@@ -182,7 +182,7 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.local/bin" # for nvr
 
 # Adding flutter sdk to path.
-export PATH=${PATH}:/Users/sudars/code/flutter-sdk/flutter/bin
+export PATH=${PATH}:/Users/sudars/code/flutter/bin
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
