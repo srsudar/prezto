@@ -50,6 +50,9 @@ alias attu="ssh sudars@attu.cs.washington.edu"
 # git clone https://github.com/zdharma/fast-syntax-highlighting  ~/.fsh
 source ~/.fsh/fast-syntax-highlighting.plugin.zsh
 fast-theme -q free
+# Suggestions from your history. Must first install via:
+# git clone https://github.com/zsh-users/zsh-autosuggestions.git
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Jan 9, 2014
 # Starts a python server serving the contents of the current file
@@ -270,7 +273,6 @@ if [[ -a ~/.zshMachineFlag_mbpro_poorwill ]]; then
 fi
 
 if [[ -a ~/.zshMachineFlag_worklinux ]]; then
-  source "${ZDOTDIR:-$HOME}"/.zprezto/machine-specific/worklinux_zshrc
   source "${ZDOTDIR:-$HOME}"/.zshrc-glinux
 fi
 
