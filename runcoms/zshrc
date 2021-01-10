@@ -47,11 +47,11 @@ alias attux="ssh -X sudars@attu.cs.washington.edu"
 alias attu="ssh sudars@attu.cs.washington.edu"
 
 # Syntax highlighting at the shell. Must first install via:
-# git clone https://github.com/zdharma/fast-syntax-highlighting  ~/.zsh/fast-syntax-highlighting
+# git clone https://github.com/zdharma/fast-syntax-highlighting ~/.zsh/fast-syntax-highlighting
 source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 fast-theme -q free
 # Suggestions from your history. Must first install via:
-# git clone https://github.com/zsh-users/zsh-autosuggestions.git
+# git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.zsh/zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Jan 9, 2014
@@ -96,6 +96,16 @@ alias mvn=color_maven
 # argument varies across platforms.
 alias ll='ls -lhF'
 alias la='ll -A'
+
+# Use less with rg
+rg () {
+  if [ -t 1 ]
+  then
+    command rg -p "$@" | less -RFX
+  else
+    command rg "$@"
+  fi
+}
 
 # Aug 31, 2014
 # Show the directory history. This works using the dh stack. See here for more
@@ -155,9 +165,10 @@ stty -ixon
 unsetopt HIST_VERIFY
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# Use ripgrep for fzf. This respects ignore files in version control.
-export FZF_DEFAULT_COMMAND='rg --files'
-export FZF_CTRL_T_COMMAND='rg --files'
+# Use ripgrep for fzf. This respects ignore files in version control. Don't
+# search node_modules (`--iglob`).
+export FZF_DEFAULT_COMMAND="rg --files --iglob='!node_modules'"
+export FZF_CTRL_T_COMMAND="rg --files --iglob='!node_modules'"
 
 #############
 # BEGIN if you need to restrict FZF's files.
@@ -355,7 +366,7 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.local/bin" # for nvr
 
 # Adding flutter sdk to path.
-export PATH=${PATH}:/Users/sudars/code/flutter-sdk/flutter/bin
+export PATH=${PATH}:/Users/sudars/code/flutter/bin
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
