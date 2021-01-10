@@ -1,13 +1,11 @@
 export GOPATH=${HOME}/code/go-path-base-dir
 export PATH=${PATH}:${GOPATH}/bin
 
-alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
-
 # 2017-01-13 put mactex binaries on PATH
 export PATH=${PATH}:/usr/local/texlive/2016/bin/x86_64-darwin
 
 # Make sure to use the correct vim.
-export VISUAL=/Applications/MacVim.app/Contents/MacOS/Vim
+export VISUAL='vim'
 export EDITOR='vim'
 
 # Put anaconda on path
