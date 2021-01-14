@@ -30,6 +30,11 @@ function spectrum_ls() {
 autoload -U zmv
 alias mmv='noglob zmv -W'
 
+# gawk is more portable than awk, making awk commands the same on mac and linux.
+# This will require `brew install gawk` on mac. If there are downsides for mac,
+# I'm not aware of them.
+alias awk=gawk
+
 # Show all 256 colors where the background is set to specific color
 function spectrum_bls() {
   for code in {000..255}; do
@@ -210,10 +215,13 @@ _find_flags() {
   local match_prefix=$1
   fc -rl 1 | \
     # strip leading command number and trailing slashes. Trailing slashes
-    # somehow confuse fzf or the do while.
-      sed -e 's/^\s*[0-9]*\*\?\s*//' -e 's/\\\+$//' | \
+    # somehow confuse fzf or the do while. We use -E for portability with both
+    # mac and unix.
+      sed -E -e 's/^[[:space:]]*[0-9]*\*?[[:space:]]*//' -e 's/\\+$//' | \
       rg "^${match_prefix}" --color=never --no-line-number |
-awk -v match_prefix=${match_prefix} ' { for (i = 1; i <= NF; i++) {
+# Use gawk rather than awk here for portability. On mac this requires you to
+# first install gawk, eg `brew install gawk`.
+gawk -v match_prefix=${match_prefix} ' { for (i = 1; i <= NF; i++) {
   flag = ""
   is_value = ""
   maybe_value = ""
