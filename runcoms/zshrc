@@ -57,6 +57,13 @@ source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 fast-theme -q free
 # Suggestions from your history. Must first install via:
 # git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.zsh/zsh-autosuggestions
+#
+# Additionally, to complete a single token without leaving the home row, I
+# configure `<ctrl>-;` to send a hex code. For iTerm on OSX, this happens in:
+# Settings | Keys, and then add a shortcut with:
+#   * Keyboard Shortcut: ^;
+#   * Action: Send Hex Code
+#   * (value): 0x1b 0x66
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Jan 9, 2014
