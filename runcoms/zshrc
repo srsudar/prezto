@@ -104,6 +104,11 @@ function color_maven() {
 
 alias mvn=color_maven
 
+# Use OneHalfDark theme for bat (cat/less replacement,
+# https://github.com/sharkdp/bat). To see themes in action:
+# bat --list-themes | fzf --preview="bat --theme={} --color=always /path/to/file"
+export BAT_THEME="OneHalfDark"
+
 # Colorizing output is handled in machine-specific/<platform>_zshrc, as the
 # argument varies across platforms.
 alias ll='ls -lhF'
