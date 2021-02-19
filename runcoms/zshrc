@@ -139,8 +139,16 @@ alias rm='nocorrect rm'
 # Sep 2, 2014
 # Somehow my editor ended up being nano after this. The horror.
 # interesting answer as to the difference between these two:
+#
 # http://unix.stackexchange.com/questions/4859/visual-vs-editor-whats-the-difference
-export VISUAL=vim
+#
+# -X on VISUAL because that disables X server integration. Using this command to
+# time my vim startup, it became apparent clipboard functionality was adding 2s:
+#
+# vim --startuptime /tmp/startup -c q ; less /tmp/startup
+#
+# Normally that is fine, but on `c-x c-e` editing, I want to avoid that delay.
+export VISUAL="vim -X"
 export EDITOR=vim
 
 # Don't allow nested nvim instances when in nvim's terminal mode. Instead,
